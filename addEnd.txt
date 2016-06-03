@@ -1,0 +1,49 @@
+//Alvin Beskow
+//GitHub ALBeskow
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+public class Archives {
+
+    private String NAME;
+    public Archives(String file){
+        NAME=file;
+    }
+
+    public boolean addEnd(ArrayList a, String table){
+            if(a.size()==0){
+                return false;
+            }
+            else{  
+                try{
+                    File file =new File(NAME);
+                        if(!file.exists()){
+                              file.createNewFile();
+                        }
+                    FileWriter fw = new FileWriter(file,true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter pr = new PrintWriter(bw);
+                    int x=0;
+                    pr.println("#"+table);
+                    while(x<a.size()){
+                        pr.println(a.get(x));
+                        x++;
+                    }
+                    pr.close();
+                    return true;
+                }catch(IOException ioe){
+                   System.out.println("Exception occurred:");
+                   ioe.printStackTrace();
+                   return false;
+                }
+            }
+        }
+
+}
